@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+      xml:lang="en">
+<head>
+  <title>Wu Lin's Homepage</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="description" content="Wu Lin">
+  <meta name="keywords" content="Wu Lin">
+  <meta name="author" content="Wu Lin" />
+  <link rel="stylesheet" href="w3.css">
+  <style>
+  .w3-sidebar a {font-family: "Roboto", sans-serif}
+  body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
+  </style>
+
+<style>
+.row {
+  margin: 10px -16px;
+}
+
+/* 在每列之间添加填充 */
+.row,
+.row > .column {
+  padding: 8px;
+}
+
+/* 创建三个相等的并排浮动的列 */
+.column {
+  float: left;
+  width: 25%;
+  display: none; /* 默认隐藏所有元素 */
+}
+
+/* 清除行后的浮点数 */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* 内容 */
+.content {
+  background-color: white;
+  padding: 10px;
+}
+
+/* "show" 类被添加到被过滤的元素中 */
+.show {
+  display: block;
+}
+
+/* 按钮样式 */
+.btn {
+  border: none;
+  outline: none;
+  padding: 2px 16px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #ddd;
+}
+
+.btn.active {
+  background-color: #666;
+  color: white;
+}
+</style>
+
+</head>
+
+<body class="w3-content" style="max-width:1000px">
+    <div class="w3-main" style="margin-left:150px">
+        <div class="w3-container w3-light-grey w3-padding-22" id="blog">
+            <br>
+            <h3>Blog</h3>
+
+            <!-- 设置导航栏 -->
+            <div id="myBtnContainer">
+                <button class="btn active" onclick="filterSelection('all')"> <h5>Show all </h5> </button>
+                <button class="btn" onclick="filterSelection('optimization')"> <h5>Optimization</h5></button>
+                <button class="btn" onclick="filterSelection('learning')"> <h5>Learning</h5></button>
+            </div>
+
+            <!-- 定义每一行和每一列的内容 -->
+            <div class="row">
+                <div class="column optimization">
+                    <div class="content">
+                        <img src="/images/fig1.jpg" alt="山脉" style="width:100%">
+                        <h5>Mountains</h5>
+                        <p>Lorem ipsum dolor..</p>
+                    </div>
+                </div>
+
+                <div class="column optimization">
+                    <div class="content">
+                        <img src="/images/fig2.jpg" alt="Lights" style="width:100%">
+                        <h5>Lights</h5>
+                        <p>Lorem ipsum dolor..</p>
+                    </div>
+                </div>
+
+                <div class="column optimization">
+                    <div class="content">
+                        <img src="/images/fig2.jpg" alt="Nature" style="width:100%">
+                        <h5>Forest</h5>
+                        <p>Lorem ipsum dolor..</p>
+                    </div>
+                </div>
+
+                <div class="column learning">
+                    <div class="content">
+                        <a href=""> <img src="/images/fig2.jpg" alt="gg" style="width:100%"> </a>
+                        <p>some opinions on MOEA/D.. </p>
+                    </div>
+                </div>
+
+            </div>
+            <br>
+        </div>
+    </div>
+
+<!-- 实现blog按类别筛选功能-->
+<script>
+filterSelection("all")
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("column");
+  if (c == "all") c = "";
+  for (i = 0; i < x.length; i++) {
+    w3RemoveClass(x[i], "show");
+    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+  }
+}
+
+function w3AddClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+  }
+}
+
+function w3RemoveClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);
+    }
+  }
+  element.className = arr1.join(" ");
+}
+
+// 将活动类添加到当前按钮（突出显示它）
+var btnContainer = document.getElementById("myBtnContainer");
+var btns = btnContainer.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function(){
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+</script>
+
+</body>
+</html>
